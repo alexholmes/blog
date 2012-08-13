@@ -19,7 +19,6 @@ the local copy via the `pull` command:
 
 The contents of your script will be as follows:
 
-
     #!/bin/bash
 
     echo "Running at "`date`
@@ -38,7 +37,6 @@ The contents of your script will be as follows:
       cd ${gitdir}
       git pull
     fi
-
 
     rm -rf ${nginxdir}/*
     jekyll --no-auto . ${nginxdir}/
