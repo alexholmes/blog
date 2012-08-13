@@ -9,7 +9,7 @@ categories:
 ---
 
 This blog is created using the excellent [jekyll](https://github.com/mojombo/jekyll) Ruby-based
-HTML generator. Once [nginx](http://nginx.org/) and jekyll have been installed on your *nix system,
+HTML generator. Once [nginx](http://nginx.org/) and jekyll have been installed on your \*nix system,
 and you've pushed your blog to [github](https://github.com/), then all that remains is to create a
 shell script which clones your github repo for the first time if it doesn't already exist, or updates
 the local copy via the `pull` command:
