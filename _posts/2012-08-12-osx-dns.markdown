@@ -19,7 +19,7 @@ domain name at my hosting provider. Being an impatient sort, I didn't want to ha
 the TTL on my domain name to expire, so I ran a `dig` request to see if my registrar had pushed
 through the change:
 
-    $shell> dig grepalex.com
+    shell> dig grepalex.com
 
     ;; ANSWER SECTION:
     grepalex.com.		3600	IN	A	66.216.100.140
@@ -36,6 +36,6 @@ which indeed was still the old value. Clearly the OSX DNS client was performing 
 caching. After some more digging around I found the (Mountain) Lion-specific command which
 did indeed successfully clean OSX's cache:
 
-    $shell> sudo killall -HUP mDNSResponder
+    shell> sudo killall -HUP mDNSResponder
 
 Hurray!
