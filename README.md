@@ -1,1 +1,1 @@
-Content for my Jekyll-generated blog, hosted at (grepalex.com).
+Content for my Jekyll-generated blog, hosted at [grepalex.com].
