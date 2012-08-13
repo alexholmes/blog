@@ -1,0 +1,6 @@
+*DS_Store
+_site
+_templates
+*.swp
+.rvmrc
+.idea

@@ -1,0 +1,78 @@
+/*
+ * Tomorrow Night theme
+ *
+ * @author Chris Kempson
+ * @author skim
+ * @version 1.0.0
+ */
+
+pre code {
+  background: #333;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  display: block;
+  font-family: "DroidSansMono";
+  font-size: 13px;
+  line-height: 1.25em;
+  overflow: hidden;
+  padding: 1em 1em 1.5em 1em;
+}
+
+pre code:hover {
+  overflow: auto;
+}
+
+pre code,
+pre .ruby .subst,
+pre .tag .title,
+pre .lisp .title,
+pre .nginx .title {
+  color: #c5c8c6;
+}
+
+pre .smalltalk .symbol,
+pre.comment,
+pre.javadoc,
+pre.shebang,
+pre.template_comment,
+pre.yardoctag {
+  color: #b5bd68;
+}
+
+pre .smalltalk .keyword,
+pre.variable,
+pre.instancevar {
+  color: #cc6666; /* red */
+}
+
+pre .css .params,
+pre .css .value,
+pre .literal,
+pre .number {
+  color: #de935f; /* orange */
+}
+
+pre .javascript .regexp,
+pre .json .attribute,
+pre .string,
+pre .symbol {
+  color: #b5bd68; /* green */
+}
+
+pre .css .class,
+pre .css .id,
+pre .css .function,
+pre .css .rules,
+pre .constant,
+pre .class .title,
+pre .function .title,
+pre .parent {
+  color: #81a2be; /* blue */
+}
+
+pre .css .pseudo,
+pre .smalltalk .class,
+pre .keyword {
+  color: #b294bb; /* purple */
+}

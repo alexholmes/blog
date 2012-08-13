@@ -1,0 +1,41 @@
+---
+layout: post
+title: OSX, Chrome and DNS
+date: 2012-08-12 21:06:00 -05:00
+categories:
+  -- osx
+  -- chrome
+  -- dns
+  -- verisign
+---
+
+First post! Welcome to "Hadoop Hamburgers", where I plan to write some posts about Hadoop
+and other topics that seem interesting. My first one is not related to Hadoop, but instead
+related to DNS, a subject near and dear to the heart of my employer,
+[Verisign](http://verisign-inc.com). Everything in getting this site
+setup went fairly smoothly, including updating
+my [registrar's](http://en.wikipedia.org/wiki/Domain_name_registrar) DNS records to point my
+domain name at my hosting provider. Being an impatient sort, I didn't want to have to wait for
+the TTL on my domain name to expire, so I ran a `dig` request to see if my registrar had pushed
+through the change:
+
+    $shell> dig grepalex.com
+
+    ;; ANSWER SECTION:
+    grepalex.com.		3600	IN	A	66.216.100.140
+
+Indeed they had! Next up was trying to hit my website from my browser. When I did that however,
+Chrome was showing the my registrar's advertising content.
+A few pokes around led me to Chrome's web page which lets you invalidate its DNS cache:
+
+    chrome://net-internals/#dns
+
+However even after invalidating Chrome's cache it still showed the content from the registrar.
+The cool thing about Chrome's internal page is that it actually shows you the cached IP address,
+which indeed was still the old value. Clearly the OSX DNS client was performing some additional
+caching. After some more digging around I found the (Mountain) Lion-specific command which
+did indeed successfully clean OSX's cache:
+
+    $shell> sudo killall -HUP mDNSResponder
+
+Hurray!

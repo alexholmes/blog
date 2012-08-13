@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    {% if page.title %}
+      {{ page.title }} - Hadoop Hamburgers
+    {% else %}
+      {{ site.posts.first.title }} - Hadoop Hamburgers
+    {% endif %}
+  </title>
+  <link rel="stylesheet" href="/stylesheets/screen.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/tomorrow_night.css" />
+</head>
+<body>
+  <div class="content">
+    {% include header.html %}
+  </div>
+  {{ content }}
+  <div class="related">
+    <h3>all posts</h3>
+    <p>
+			<table>
+				<tbody>
+					{% for post in site.posts %}
+					<tr>
+						<td>
+							{{ post.date | date: "%b %d, %Y" }} 
+						</td>
+						<td>
+							&raquo;
+						</td>
+						<td>
+							<a href="{{ post.url }}">{{ post.title }}</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</p>
+    <br />
+  </div>
+  </body>
+</html>
