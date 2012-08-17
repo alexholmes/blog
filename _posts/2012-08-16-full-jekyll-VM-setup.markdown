@@ -171,7 +171,7 @@ Start Nginx:
 You can test that Nginx is up and running by pointing your browser at your VM IP address - you
 should see a page confirming that all is good.
 
-![nginx welcome screen](/images/nginx-welcome.png)
+![Nginx welcome screen](/images/nginx-welcome.png)
 
 ## Install Jekyll
 
@@ -253,6 +253,7 @@ yourself:
 
 Now when you refresh your browser you'll see your Jekyll-generated website!
 
+![Nginx serving up Jekyll-generated content](/images/nginx-with-jekyll.png)
 
 
 
