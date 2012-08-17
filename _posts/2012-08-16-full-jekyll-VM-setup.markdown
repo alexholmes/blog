@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Installing and running Nginx, Jekyll and your blog from scratch
+title: Bare-metal installation for Nginx, Jekyll and GitHub-hosted Jekyll blog sources
 date: 2012-08-16 19:56:00 -05:00
 categories:
   -- nginx
