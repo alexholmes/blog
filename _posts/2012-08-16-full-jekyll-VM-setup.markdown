@@ -10,8 +10,7 @@ categories:
 
 This blog is a bunch of HTML created by [jekyll](https://github.com/mojombo/jekyll). I'm hosting
 it on a VM, and this post is the sequence of steps that I used to setup the blog on my VM from scratch.
-
-The instructions that follow were executed a CentOS 6 VM.
+The instructions that follow were executed on a CentOS 6 VM.
 
 ## Create a user and setup ssh
 
@@ -121,7 +120,7 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 # List
 iptables -L -v
-<pre><code>
+</code></pre>
 
 After you've created the file, make it an executable and execute it to save your rules.
 
