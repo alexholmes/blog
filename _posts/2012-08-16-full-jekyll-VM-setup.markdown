@@ -9,11 +9,6 @@ categories:
 ---
 
 This blog is a bunch of HTML created by [Jekyll](https://github.com/mojombo/jekyll).
-I have a CentOS virtual machine running a cron-driven script which performs the following steps:
-
-1. Updates my blog Jekyll source from GitHub.
-2. Uses Jekyll to generate the HTML for the blog.
-
 I'm using the ngix HTTP server to then serve-up the static HTML. It's very simple to get the VM
 setup, and this blog post documents how I did it, mostly so that I can easily rebuild the VM.
 The instructions that follow presume that you have a new virtual machine running CentOS 6.
@@ -180,9 +175,9 @@ The following commands will install Jekyll on your VM:
     shell$ sudo yum install gcc rubygems ruby-devel
     shell$ sudo gem install jekyll
 
-## Create a crontab entry
+## Create a crontab entry and script to generate the blog
 
-We're going to use Jekyll to write to the Nginx HTML directory, and since we're going to do this
+We're going to setup Jekyll to write to the Nginx HTML directory, and since we're going to do this
 as the `bloguser` user, we'll first need to wipe-out the contents of that directory, and `chown` it
 so that the `bloguser` can write to it:
 
@@ -199,8 +194,18 @@ Create a directory to contain your blog source
     shell$ sudo mkdir -p /app/blog
     shell$ sudo chown bloguser:bloguser /app/blog
 
-Create a
-shell script in `/app/blog/gen.sh`:
+The script will send out an email if an error is encountered, so you need to install mail:
+
+    shell$ sudo yum install mailx
+
+Next on our list is creating a script which will do the following:
+
+1. Pulls the latest blog sources from GitHub.
+2. Uses Jekyll to generate the HTML for the blog.
+3. Sends an email if Jekyll exits with an error, or if the home page can't be retrieved
+
+
+Create a shell script in `/app/blog/gen.sh`:
 
     shell$ vi /app/blog/gen.sh
 
@@ -210,12 +215,26 @@ the local copy via the `pull` command:
 
     #!/bin/bash
 
+    send_email_and_exit() {
+      recipient=$1
+      message=$2
+
+      echo "Sending email and exiting due to error"
+
+      /bin/mail -s "Blog generation failure" "${recipient}" << EOF
+    ${message}
+    EOF
+
+      exit 1
+    }
+
     echo "Running at "`date`
 
     basedir=/app/blog
     gitdir=${basedir}/blog
     nginxdir=/usr/share/nginx/html
     githubrepo=https://github.com/alexholmes/blog.git
+    emailto="grep.alex@gmail.com"
 
     if [ ! -d ${gitdir} ]; then
       echo "Checking out repo for the first time"
@@ -231,6 +250,20 @@ the local copy via the `pull` command:
 
     rm -rf ${nginxdir}/*
     jekyll --no-auto . ${nginxdir}/
+
+    exitCode=$?
+
+    if [ ${exitCode} != "0" ]; then
+      send_email_and_exit "${emailto}" "Jekyll failed with exit code ${exitCode}"
+    fi
+
+    curl http://0.0.0.0:80/ >/dev/null 2>&1
+
+    exitCode=$?
+
+    if [ ${exitCode} != "0" ]; then
+      send_email_and_exit "${emailto}" "Curl failed with exit code ${exitCode}"
+    fi
 
 Make the file executible:
 
