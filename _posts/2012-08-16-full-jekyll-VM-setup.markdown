@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Installing and running nginx, jekyll and your blog from scratch
+title: Installing and running Nginx, Jekyll and your blog from scratch
 date: 2012-08-16 19:56:00 -05:00
 categories:
   -- nginx
@@ -8,9 +8,15 @@ categories:
   -- centos
 ---
 
-This blog is a bunch of HTML created by [jekyll](https://github.com/mojombo/jekyll). I'm hosting
-it on a VM, and this post is the sequence of steps that I used to setup the blog on my VM from scratch.
-The instructions that follow were executed on a CentOS 6 VM.
+This blog is a bunch of HTML created by [Jekyll](https://github.com/mojombo/jekyll).
+I have a CentOS virtual machine running a cron-driven script which performs the following steps:
+
+1. Updates my blog Jekyll source from GitHub.
+2. Uses Jekyll to generate the HTML for the blog.
+
+I'm using the ngix HTTP server to then serve-up the static HTML. It's very simple to get the VM
+setup, and this blog post documents how I did it, mostly so that I can easily rebuild the VM.
+The instructions that follow presume that you have a new virtual machine running CentOS 6.
 
 ## Create a user and setup ssh
 
@@ -66,7 +72,7 @@ Add the following line:
 
 ## Setup some basic security
 
-Next up is tighten-up the SSH configuration.
+Next up is tightening-up the SSH configuration.
 
     shell$ sudo vi /etc/ssh/sshd_config
 
@@ -144,32 +150,98 @@ Chain OUTPUT (policy ACCEPT 2 packets, 264 bytes)
 
 The output shows your new iptables configuration which reflects the rules we saved in `myvm-iptables.sh`.
 
-## Install and start nginx
+## Install and start Nginx
 
 Add the EPEL yum repository into your configuration:
 
     shell$ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm
 
-Install nginx using yum:
+Install Nginx using yum:
 
     shell$ sudo yum install nginx
 
-Setup nginx so that it auto-starts at system start time:
+Setup Nginx so that it auto-starts at system start time:
 
     shell$ sudo chkconfig nginx on
 
-Start nginx:
+Start Nginx:
 
     shell$ sudo /sbin/service nginx start
 
-You can test that nginx is up and running by pointing your browser at your VM IP address - you
+You can test that Nginx is up and running by pointing your browser at your VM IP address - you
 should see a page confirming that all is good.
 
 ![nginx welcome screen](/images/nginx-welcome.png)
 
-## Install jekyll
+## Install Jekyll
 
+The following commands will install Jekyll on your VM:
 
+    shell$ sudo yum install gcc rubygems ruby-devel
+    shell$ sudo gem install jekyll
 
 ## Create a crontab entry
+
+We're going to use Jekyll to write to the Nginx HTML directory, and since we're going to do this
+as the `bloguser` user, we'll first need to wipe-out the contents of that directory, and `chown` it
+so that the `bloguser` can write to it:
+
+    shell$ sudo rm -rf /usr/share/nginx/html/*
+    shell$ sudo chown bloguser:bloguser /usr/share/nginx/html
+
+We'll assume that you have a GitHub repository that's hosting your Jekyll sources. Therefore you
+need to install git.
+
+    shell$ sudo yum install git
+
+Create a directory to contain your blog source
+
+    shell$ sudo mkdir -p /app/blog
+    shell$ sudo chown bloguser:bloguser /app/blog
+
+Create a
+shell script in `/app/blog/gen.sh` which clones your github repo for the first
+time if it doesn't already exist, or updates
+the local copy via the `pull` command:
+
+    #!/bin/bash
+
+    echo "Running at "`date`
+
+    basedir=/app/blog
+    gitdir=${basedir}/blog
+    nginxdir=/usr/share/nginx/html
+    githubrepo=https://github.com/alexholmes/blog.git
+
+    if [ ! -d ${gitdir} ]; then
+      echo "Checking out repo for the first time"
+      mkdir -p ${gitdir}
+      cd ${basedir}
+      git clone ${githubrepo}
+    else
+      cd ${gitdir}
+      git pull
+    fi
+
+    rm -rf ${nginxdir}/*
+    jekyll --no-auto . ${nginxdir}/
+
+Now all you need is a crontab entry to refresh your blog every 5 minutes:
+
+    shell$ crontab -e
+    */5 * * * * /app/blog/gen.sh &>> /app/blog/gen.out
+
+To check your crontab settings use the `-l` option:
+
+    shell$ crontab -l
+    */5 * * * * /app/blog/gen.sh &>> /app/blog/gen.out
+
+Now you can either wait for up to 5 minutes for the cron to execute the script, or simply run it
+yourself:
+
+    shell$ /app/blog/gen.sh
+
+
+
+
 
