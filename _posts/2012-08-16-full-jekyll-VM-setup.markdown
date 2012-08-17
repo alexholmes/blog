@@ -200,7 +200,11 @@ Create a directory to contain your blog source
     shell$ sudo chown bloguser:bloguser /app/blog
 
 Create a
-shell script in `/app/blog/gen.sh` which clones your github repo for the first
+shell script in `/app/blog/gen.sh`:
+
+    shell$ vi /app/blog/gen.sh
+
+Copy the following content into this file, which clones your github repo for the first
 time if it doesn't already exist, or updates
 the local copy via the `pull` command:
 
@@ -223,8 +227,14 @@ the local copy via the `pull` command:
       git pull
     fi
 
+    cd ${gitdir}
+
     rm -rf ${nginxdir}/*
     jekyll --no-auto . ${nginxdir}/
+
+Make the file executible:
+
+    shell$ chmod +x /app/blog/gen.sh
 
 Now all you need is a crontab entry to refresh your blog every 5 minutes:
 
@@ -240,6 +250,8 @@ Now you can either wait for up to 5 minutes for the cron to execute the script, 
 yourself:
 
     shell$ /app/blog/gen.sh
+
+Now when you refresh your browser you'll see your Jekyll-generated website!
 
 
 
