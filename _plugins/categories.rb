@@ -10,7 +10,7 @@
 #
 module Jekyll
 
-  class ArchiveGenerator < Generator
+  class CategoryGenerator < Generator
     safe true
 
     def generate(site)
