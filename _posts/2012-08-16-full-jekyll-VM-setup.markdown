@@ -1,16 +1,17 @@
 ---
 layout: post
-title: Bare-metal installation for Nginx, Jekyll and GitHub-hosted Jekyll blog sources
+title: Bare-metal installation for Nginx and Jekyll
 date: 2012-08-16 19:56:00 -05:00
 categories:
   -- *nix
   -- jekyll
 ---
 
-This blog is a bunch of HTML created by [Jekyll](https://github.com/mojombo/jekyll).
-I'm using the ngix HTTP server to then serve-up the static HTML. It's very simple to get the VM
-setup, and this blog post documents how I did it, mostly so that I can easily rebuild the VM.
-The instructions that follow presume that you have a new virtual machine running CentOS 6.
+This blog is a bunch of [Jekyll](https://github.com/mojombo/jekyll)-created HTML which is
+served by the [Ngix](http://nginx.org/) HTTP server.  This post documents the process of getting Jekyll and Nginx
+setup from bare metal. It also shows a script being used to periodically pull and generate your blog
+from GitHub sources. The instructions that follow should work for RedHat 6 and derivatives
+(such as CentOS 6 which is what I'm using).
 
 ## Create a user and setup ssh
 
