@@ -1,0 +1,8 @@
+---
+layout: bare
+title: Oops
+---
+
+![404](/images/404.png)
+
+What you're looking for is not here.  How about visiting the [home page](/)?
