@@ -3,9 +3,8 @@ layout: post
 title: Bare-metal installation for Nginx, Jekyll and GitHub-hosted Jekyll blog sources
 date: 2012-08-16 19:56:00 -05:00
 categories:
-  -- nginx
+  -- *nix
   -- jekyll
-  -- centos
 ---
 
 This blog is a bunch of HTML created by [Jekyll](https://github.com/mojombo/jekyll).
