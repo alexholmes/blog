@@ -2,11 +2,9 @@
 title: Alex Holmes
 layout: default
 ---
-<div class="content">
-  <div id="post">
-    <h1><a href="{{ site.posts.first.url }}">{{ site.posts.first.title }}</a></h1>
-    <div class="strap">{{ site.posts.first.date | date: "%b %d, %Y" }}</div>
-    {{ site.posts.first.content }}
-  </div>
-  {% include twitter.html %}
+<div id="post">
+<h1><a href="{{ site.posts.first.url }}">{{ site.posts.first.title }}</a></h1>
+<div class="strap">{{ site.posts.first.date | date: "%b %d, %Y" }}</div>
+{{ site.posts.first.content }}
 </div>
+{% include twitter.html %}

@@ -89,9 +89,11 @@ h1 {
 }
 
 #header {
-    margin-top: 1em;
-    margin-bottom: 0.5em;
+    margin-top: 4em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
     background-color: #FAF9F8;
+    border-bottom: 1px dotted black;
 }
 
 #header a {
@@ -100,18 +102,20 @@ h1 {
 }
 
 #header #title {
-    font-size: 24px;
+    font-size: 28px;
     padding-top: 8px;
     padding-bottom: 8px;
+    font-weight: bold;
 }
 
 #header #misc {
+    margin-top:1em;
+    margin-bottom:0.5em;
     font-size: 14px;
 }
 
 #header #byline {
-    color: #999;
-    padding-top: 2px;
+    padding-top: 0.5em;
     padding-right: 10px;
 }
 
@@ -121,7 +125,6 @@ h1 {
 }
 
 #header #byline a {
-    color: #999;
     text-decoration: underline;
 }
 
@@ -152,8 +155,8 @@ h1 {
 }
 
 #post p {
-    line-height: 1.6em;
-    font-size: 1.2em;
+    line-height: 2em;
+    font-size: 1em;
 }
 
 #post .bubbles {
@@ -188,10 +191,21 @@ h1 {
 
 #post h1 a {
     line-height: 1.3em;
+    font-size: 24px;
 }
 
 #post a {
     padding: 0 3px;
+}
+
+#post h2 {
+    line-height: 1.2em;
+    font-size: 18px;
+}
+
+#post h3 {
+    line-height: 1.2em;
+    font-size: 16px;
 }
 
 .twitter {
