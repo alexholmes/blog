@@ -1,0 +1,25 @@
+---
+layout: post
+title: Slurper v2
+date: 2012-08-19 22:14:00 -05:00
+categories:
+  -- hadoop
+---
+
+The current [HDFS Slurper](https://github.com/alexholmes/hdfs-file-slurper) was created as part of
+writing "Hadoop in Practice", and it just so happened that it also happened to fulfill a need that
+we had at work. The one-sentence description of the Slurper is that it's a utility that copies files
+between Hadoop file systems. It's particularly useful in situations where you want to automate
+moving files from local disk to HDFS, and vice-versa.
+
+While it has worked well for us, with the addition of a few choice features it could be
+even more useful:
+
+* Filter and projection, to remove or reduce data from input files
+* Write to multiple output files from a single input file
+* Keep source files intact
+
+As such I have come up with a high-level architecture for what v2 may look like (subject
+to change of course).
+
+![Slurper v2 architecture](/images/slurper-v2.png)
