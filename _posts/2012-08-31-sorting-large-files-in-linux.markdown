@@ -6,13 +6,13 @@ categories:
   -- *nix
 ---
 
-When I hear the word "sort" my first thought is "Hadoop"! Yes, sorting is one thing that Hadoop
+When I hear the word "sort" my first thought is usually "Hadoop"! Yes, sorting is one thing that Hadoop
 does well, but if you're working with large files in Linux the built-in sort command is
 often all you need.
 
-Let's say you have a large file on a host with 2-4GB of main memory free. The following
-[sort](http://www.oreillynet.com/linux/cmd/cmd.csp?path=s/sort) command will result in
-[lexicographically](http://en.wikipedia.org/wiki/Lexicographical_order)-ordered output.
+Let's say you have a large file on a host with 2GB or more of main memory free. The following
+[sort](http://www.oreillynet.com/linux/cmd/cmd.csp?path=s/sort) command is a efficient way to
+[lexicographically](http://en.wikipedia.org/wiki/Lexicographical_order)-order large files.
 
     LC_COLLATE=C sort --buffer-size=1G --temporary-directory=./tmp --unique bigfile.txt
 
