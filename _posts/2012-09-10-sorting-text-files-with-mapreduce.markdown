@@ -80,7 +80,7 @@ Another trick that this sort utility has is its tight integration with LZOP, a u
 codec that works well with large files in MapReduce (see chapter 5 of
 [Hadoop in Practice](http://www.manning.com/holmes/) for more details on LZOP). It can work with
 LZOP input files that span multiple splits, and can also LZOP-compress outputs, and even create
-LZOP index files. You would do this with the `codec` and ` options:
+LZOP index files. You would do this with the `codec` and `lzop-index` options:
 
     shell$ $HADOOP_HOME/bin/hadoop jar hadoop-utils-<version>-jar-with-dependencies.jar \
              com.alexholmes.hadooputils.sort.Sort \
