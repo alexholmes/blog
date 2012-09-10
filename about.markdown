@@ -11,3 +11,5 @@ distributed Java systems. For the last four years he has gained expertise in Had
 Data problems across a number of projects. He is the author of "Hadoop in Practice", a book
 published by Manning Publications. He has presented at JavaOne and Jazoon and is currently a
 technical lead at VeriSign.
+
+Some of Alex's open-source contributions can be see on <a target="_blank" href="https://github.com/alexholmes">GitHub</a>.

@@ -82,7 +82,7 @@ h1 a, h2 a, h3 a, h4 a {
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 24px;
     border-bottom: 1px solid #eee;
     margin-bottom: .25em;
     padding-bottom: 8px;
@@ -93,7 +93,6 @@ h1 {
     margin-bottom: 1em;
     padding-bottom: 1em;
     background-color: #FAF9F8;
-    border-bottom: 1px dotted black;
 }
 
 #header a {
@@ -109,8 +108,8 @@ h1 {
 }
 
 #header #misc {
-    margin-top:1em;
-    margin-bottom:0.5em;
+    margin-top:0.3em;
+    margin-bottom:0.2em;
     font-size: 14px;
 }
 
@@ -150,7 +149,7 @@ h1 {
 }
 
 #post {
-    margin-top: 2em;
+    margin-top: 1em;
     padding-bottom: 0.1em;
 }
 
