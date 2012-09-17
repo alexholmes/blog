@@ -56,6 +56,6 @@ if I wanted to use sed to perform a substitution and overwrite an existing file:
 Ugh! Well there's no need to do this - sed has a `-i` option which will do an inline replace of
 the file:
 
-    shell$ sed 's/a/b/' file1.txt
+    shell$ sed -i 's/a/b/' file1.txt
 
 Ahhh, that's better!  Anything that's easy on the eyes gets a thumbs-up from me.
