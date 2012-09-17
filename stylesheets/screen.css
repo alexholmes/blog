@@ -154,7 +154,7 @@ h1 {
 }
 
 #post p {
-    line-height: 2em;
+    line-height: 1.8em;
     font-size: 1em;
 }
 
@@ -176,6 +176,12 @@ h1 {
     padding: 1em 3em;
     margin: 2em 6em;
     color: #999;
+}
+
+#post code {
+    color: black;
+    background-color: #EEE;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
 #post blockquote cite:before {
