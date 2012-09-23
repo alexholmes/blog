@@ -1,0 +1,104 @@
+http://hadoop.apache.org/docs/r0.20.2/mapred_tutorial.html
+https://issues.apache.org/jira/browse/MAPREDUCE-64
+
+Currently io.sort.record.percent is a fairly obscure, per-job configurable, expert-level
+parameter which controls how much accounting space is available for records in the map-side sort
+buffer (io.sort.mb). Typically values for io.sort.mb (100) and io.sort.record.percent (0.05)
+imply that we can store ~350,000 records in the buffer before necessitating a sort/combine/spill.
+
+350K records in 95MB = 271 bytes average record size, which is larger than probably the majority
+of jobs we see in practice.
+
+MapTask
+
+OldOutputCollector  mapred.partitioner.class
+NewOutputCollector  mapreduce.partitioner.class
+
+
+*********** COLLECTING ***********
+
+
+if # reducers > 0 then use MapOutputBuffer, otherwise DirectMapOutputCollector
+
+MapOutputBuffer ctor sets up sort and spill settings
+
+
+kvindex   - marks end of collected
+kvoffsets - indices into kvindices
+kvindices -  partition, k/v offsets into kvbuffer
+kvbuffer  - main output buffer
+kvstart   - marks beginning of spill
+kvend     - marks beginning of collectable (set to kvindex as part of startSpill())
+softRecordLimit -
+
+recper = job.getFloat("io.sort.record.percent",(float)0.05);
+spillper = job.getFloat("io.sort.spill.percent",(float)0.8);
+sortmb = job.getInt("io.sort.mb", 100);
+
+int ACCTSIZE = 3;  // total #fields in acct
+int RECSIZE = (ACCTSIZE + 1) * 4;  // acct bytes per record
+int maxMemUsage = sortmb << 20;
+
+int recordCapacity = (int)(maxMemUsage * recper);
+recordCapacity -= recordCapacity % RECSIZE;
+recordCapacity /= RECSIZE;
+
+kvbuffer = new byte[maxMemUsage - recordCapacity];
+kvoffsets = new int[recordCapacity];
+kvindices = new int[recordCapacity * ACCTSIZE];
+softRecordLimit =  = (int)(kvoffsets.length * spillper)
+
+Logic to determine if spill should occur:
+MapTask.MapOutputBuffer.collect (line 1010)
+MapTask.Buffer.write(line 1237) - spill started if the serialization buffer can't hold the next record
+
+      final int kvnext = (kvindex + 1) % kvoffsets.length;
+      spillLock.lock();
+      try {
+        boolean kvfull;
+        do {
+          if (sortSpillException != null) {
+            throw (IOException)new IOException("Spill failed"
+                ).initCause(sortSpillException);
+          }
+          // sufficient acct space
+          kvfull = kvnext == kvstart;
+          final boolean kvsoftlimit = ((kvnext > kvend)
+              ? kvnext - kvend > softRecordLimit
+              : kvend - kvnext <= kvoffsets.length - softRecordLimit);
+          if (kvstart == kvend && kvsoftlimit) {
+            LOG.info("Spilling map output: record full = " + kvsoftlimit);
+            startSpill();
+          }
+          if (kvfull) {
+            try {
+              while (kvstart != kvend) {
+                reporter.progress();
+                spillDone.await();
+              }
+            } catch (InterruptedException e) {
+              throw (IOException)new IOException(
+                  "Collector interrupted while waiting for the writer"
+                  ).initCause(e);
+            }
+          }
+        } while (kvfull);
+      } finally {
+        spillLock.unlock();
+      }
+
+When spilling is done (in SpillThread):
+              kvstart = kvend;
+              bufstart = bufend;
+
+
+*********** SPILLING ***********
+
+SpillThread.sortAndSpill
+
+
+*********** MERGING ***********
+
+MapTask.Buffer.flush
+MapTask.Buffer.mergeParts
+
