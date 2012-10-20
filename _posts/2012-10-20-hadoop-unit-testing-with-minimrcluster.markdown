@@ -84,7 +84,9 @@ However, at least with the Hadoop 1.0.3 release, this will fail with the followi
       ...
 
 The trick here is that the JobTracker is expecting `hadoop.log.dir` to be set in the system properties, which it isn't
-in our example, causing the NPE. The fix is simple - override the `setUp()` method in ClusterMapReduceTestCase
+in our example, causing the NPE. As it turns out this is a bug (see [MAPREDUCE-2785](https://issues.apache.org/jira/browse/MAPREDUCE-2785))
+which according to Jira will be fixed in the Hadoop 1.1 release (thanks to Steve for that information).
+The fix is simple - override the `setUp()` method in ClusterMapReduceTestCase
 and set the Hadoop log directory:
 
     @Override
@@ -95,10 +97,16 @@ and set the Hadoop log directory:
         super.startCluster(true, null);
     }
 
-The only real downside to using MiniMRCluster and MiniDFSCluster is speed - it takes a good 5-10 seconds
-for both setup and tear-down, and when you multiply this for each test case this can add up.
+Once you make this change the above JUnit test will work. This can be a bit tedious to have to roll
+into each and every one of your unit tests, but luckily there are a couple of options out there so
+that you don't have to.
 
-In my GitHub [hadoop-utils](https://github.com/alexholmes/hadoop-utils) project I created a JUnit class similar to ClusterMapReduceTestCase
+First, Steve pointed out a [LocalMRCluster](http://smartfrog.svn.sourceforge.net/viewvc/smartfrog/trunk/core/hadoop-components/grumpy/src/org/smartfrog/services/hadoop/grumpy/LocalMRCluster.groovy)
+Groovy class bundled in [SmartFrog](http://wiki.smartfrog.org/wiki/display/sf/SmartFrog+Home) which
+fixes this issue by extending MiniMRCluster.
+
+Another alternative is to use my GitHub [hadoop-utils](https://github.com/alexholmes/hadoop-utils) project
+which contains a JUnit class similar to ClusterMapReduceTestCase
 called [MiniHadoopTestCase](https://github.com/alexholmes/hadoop-utils/blob/master/src/main/java/com/alexholmes/hadooputils/test/MiniHadoopTestCase.java)
 which fixes this property problem, and also gives you more control over where the in-memory clusters
 will store their data on your local filesystem, and also let you control the number of TaskTrackers
@@ -137,3 +145,5 @@ in class [TotalOrderSortTest](https://github.com/alexholmes/hadoop-utils/blob/ma
         }
     }
 
+The only real downside to using MiniMRCluster and MiniDFSCluster is speed - it takes a good 5-10 seconds
+for both setup and tear-down, and when you multiply this for each test case this can add up.
