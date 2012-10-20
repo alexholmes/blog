@@ -31,7 +31,7 @@ class, which is a JUnit `TestCase` and starts/stops a Hadoop cluster around each
 ClusterMapReduceTestCase runs a 2-node MapReduce cluster with
 2 HDFS nodes. The way you should be able to use this class is as follows:
 
-    public class IdentityTest extends ClusterMapReduceTestCase {
+    public class WordCountTest extends ClusterMapReduceTestCase {
         public void test() throws Exception {
             JobConf conf = createJobConf();
 
