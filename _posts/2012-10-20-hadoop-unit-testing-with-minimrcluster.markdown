@@ -99,9 +99,8 @@ and set the Hadoop log directory:
 
 Once you make this change the above JUnit test will work. This can be a bit tedious to have to roll
 into each and every one of your unit tests, but luckily there are a couple of options out there so
-that you don't have to.
-
-First, Steve pointed out a [LocalMRCluster](http://smartfrog.svn.sourceforge.net/viewvc/smartfrog/trunk/core/hadoop-components/grumpy/src/org/smartfrog/services/hadoop/grumpy/LocalMRCluster.groovy)
+that you don't have to.First, Steve pointed out a
+[LocalMRCluster](http://smartfrog.svn.sourceforge.net/viewvc/smartfrog/trunk/core/hadoop-components/grumpy/src/org/smartfrog/services/hadoop/grumpy/LocalMRCluster.groovy)
 Groovy class bundled in [SmartFrog](http://wiki.smartfrog.org/wiki/display/sf/SmartFrog+Home) which
 fixes this issue by extending MiniMRCluster.
 
