@@ -34,7 +34,7 @@ arguments, much like the majority of Unix commands. So this command can be rewri
     $ sort /some/file.txt | head
 
 Removing `cat` from the equation means that we've reduced the number of processes that need to
-execute, and cut down on the buffering that shell needs to do to make pipelines work - a win-win.
+execute, and cut down on the buffering and data copying that shell needs to do to make pipelines work - a win-win.
 
 In fact `cat` really doesn't have many uses - if you need to view the contents of a file you're
 better off using `vi` or `less`, and otherwise most Unix commands can directly work with files.
