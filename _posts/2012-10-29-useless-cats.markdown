@@ -22,8 +22,8 @@ let's take another look at that command:
 
     $ cat /some/file.txt | sort | head
 
-While shell pipelines are great, we have a subtle problem here - and it's something that's called
-a _useless cat_. No, I'm not a cat hater - [this expression harks back](http://partmaps.org/era/unix/award.html)
+While shell pipelines are great, we have a subtle problem here - and it's something that's known as
+a _useless cat_. No, I don't hate cats - [this expression harks back](http://partmaps.org/era/unix/award.html)
  to the old _usenet_ days where
 a forum member of _comp.unix.shell_ would write a weekly post where he would highlight a redundant
 use of the `cat` command.
@@ -34,7 +34,7 @@ arguments, much like the majority of Unix commands. So this command can be rewri
     $ sort /some/file.txt | head
 
 Removing `cat` from the equation means that we've reduced the number of processes that need to
-execute, and cut down on the buffering and data copying that shell needs to do to make pipelines work - a win-win.
+execute, and cut down on the buffering and data copying that the shell needs to do to make pipelines work - a win-win.
 
 In fact `cat` really doesn't have many uses - if you need to view the contents of a file you're
 better off using `vi` or `less`, and otherwise most Unix commands can directly work with files.
