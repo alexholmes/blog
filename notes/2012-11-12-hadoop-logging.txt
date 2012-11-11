@@ -1,0 +1,7 @@
+TaskRunner.setupLog4jProperties line 475 - setup TLA log appender
+
+TaskLogAppender
+
+
+
+mapred.userlog.limit.kb - maximum length of a task's logs
