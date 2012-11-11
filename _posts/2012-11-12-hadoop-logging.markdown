@@ -9,16 +9,16 @@ categories:
 Imagine that you're a Hadoop administrator, and to make things  interesting you're managing a
 multi-tenant Hadoop cluster where data scientists, developers and QA
 are pounding your cluster. One day you notice that your disks are filling-up fast,
-and after some investigating you realize that the root cause is your MapReduce task logs.
+and after some investigating you realize that the root cause is your MapReduce task attempt logs.
 
 How do you guard against this sort of thing happening? Before we get to that we need to understand
 where these files exist, and how they're written. The figure below shows the three log files that
-are created for each task in MapReduce. Notice that the logs are written to the local disk of the
-task.
+are created for each task attempt in MapReduce. Notice that the logs are written to the local disk of the
+task attempt.
 
 ![parition](/images/hadoop-task-logs-location.png)
 
-OK, so how does Hadoop normally make sure that our disks don't fill-up with these task logs?
+OK, so how does Hadoop normally make sure that our disks don't fill-up with these task attempt logs?
 I'll cover three approaches.
 
 ## Approach 1: mapred.userlog.retain.hours
@@ -39,7 +39,7 @@ So maybe we should look elsewhere to solve our overflowing logs problem.
 ## Approach 2: mapred.userlog.limit.kb
 
 Hadoop has another configurable, `mapred.userlog.limit.kb`, which can be used to limit the file
-size of `stdlog`, which is the log4j log file. Let's peek again at the documentation:
+size of `stdlog`, which is the log4j log output file. Let's peek again at the documentation:
 
 > The maximum size of user-logs of each task in KB. 0 disables the cap.
 
@@ -48,8 +48,8 @@ do is to set a non-negative value and we're set, right? Not so fast - it turns o
 approach has two disadvantages:
 
 1. Hadoop and user logs are actually cached in memory, so you're taking away
-`mapred.userlog.limit.kb` kilobytes worth of memory from your task's process.
-2. Logs are only written out when the task process has completed, and only contain the last
+`mapred.userlog.limit.kb` kilobytes worth of memory from your task attempt's process.
+2. Logs are only written out when the task attempt process has completed, and only contain the last
 `mapred.userlog.limit.kb` worth of log entries, so this can make it challenging to debug long-running
 tasks.
 
@@ -59,7 +59,7 @@ OK, so what else can we try? We have one more solution, log levels.
 
 Ideally all your Hadoop users got the memo about minimizing excessive logging. But the reality of
 the situation is that you have limited control over what users decide to log in their code, but
-what you do have control over is the task log levels.
+what you do have control over is the task attempt log levels.
 
 If you had a MapReduce job that was aggressively logging in package `com.example.mr`, then you may
 be tempted to use the _daemonlog_ CLI to connect to all the TaskTracker daemons and change the
@@ -68,12 +68,12 @@ logging to ERROR level:
     hadoop daemonlog -setlevel <host:port> com.example.mr ERROR
 
 Yet again we hit a roadblock - this will only change the logging level for the TaskTracker process,
-and not for the task process. Drat! This really only leaves one option, which is to update your
+and not for the task attempt process. Drat! This really only leaves one option, which is to update your
 `${HADOOP_HOME}/conf/log4j.properties` on all your data nodes by adding the following line to this
 file:
 
     log4j.logger.com.example.mr=ERROR
 
 The great thing about this change is
-that you don't need to restart MapReduce, since any new task processes will pick up your changes to
+that you don't need to restart MapReduce, since any new task attempt processes will pick up your changes to
 `log4j.properties`.
