@@ -24,7 +24,7 @@ I'll cover three approaches.
 ## Approach 1: mapred.userlog.retain.hours
 
 
-With the `mapred.userlog.retain.hours` configurable, which is defined
+Hadoop has a `mapred.userlog.retain.hours` configurable, which is defined
 in [mapred-default.xml](http://hadoop.apache.org/docs/r1.0.3/mapred-default.html) as:
 
 > The maximum time, in hours, for which the user-logs are to be retained after the job completion.
