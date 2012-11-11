@@ -181,10 +181,11 @@ h1 {
 #post blockquote {
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
-    font-size: 14px;
-    padding: 1em 3em;
-    margin: 2em 6em;
-    color: #999;
+    font-size: 1em;
+    font-style: italic;
+    padding: 1em 1em;
+    margin: 1em 1em;
+    color: #333;
 }
 
 #post code {
@@ -214,7 +215,7 @@ h1 {
 
 #post h2 {
     line-height: 1.2em;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 #post h3 {
