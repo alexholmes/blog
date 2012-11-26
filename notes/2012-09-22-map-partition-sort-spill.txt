@@ -102,3 +102,23 @@ SpillThread.sortAndSpill
 MapTask.Buffer.flush
 MapTask.Buffer.mergeParts
 
+*********** TASK TRACKER HTTP ***********
+
+TaskTracker ctor
+tasktracker.http.threads (default 40 in code)
+
+*********** REDUCER FETCHING ***********
+
+ReduceTask.ReduceCopier - manages overall copying (line 1910)
+numCopiers = mapred.reduce.parallel.copies (Default 5 in code)
+ioSortFactor = io.sort.factor (default 5 in code)
+maxRedPer = mapred.job.reduce.input.buffer.percent (default 0 in code)
+maxInMemReduce = (int)Math.min(Runtime.getRuntime().maxMemory() * maxRedPer, Integer.MAX_VALUE);
+
+ReduceTask.MapOutputCopier - individual thread for copying (line 1250)
+ if in-memory - adds map output to variable mapOutputsFilesInMemory
+ if on-disk, writes to disk and adds to variable mapOutputFilesOnDisk
+
+ReduceTask.LocalFSMerger - merges files on disk (line 2588)
+
+Once all map outputs are written to disk
