@@ -8,7 +8,8 @@ categories:
 
 Once you have outgrown your small Hadoop cluster it's worth tuning some of the shuffle
 configurables to ensure that your performance keeps up with the physical growth of your
-cluster. The figure below shows key configurables in the shuffle stage, and identifies those
+cluster. The figure below shows key configurables in the shuffle stage in Hadoop versions
+1.x and earlier, and identifies those
 that should be tuned.
 
 ![parition](/images/hadoop-shuffle-configurables.png)
