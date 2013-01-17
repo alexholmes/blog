@@ -61,6 +61,7 @@ Call your awk script from mappers via [Hadoop Streaming](http://hadoop.apache.or
     shell$ ${HADOOP_HOME}/bin/hadoop \
       jar ${HADOOP_HOME}/contrib/streaming/*.jar \
       -D mapreduce.job.reduces=0 \
+      -D mapred.reduce.tasks=0 \
       -input people.txt \
       -output people-coalesed \
       -mapper people.awk \
@@ -85,6 +86,7 @@ Finally - to get LZO into the picture you need to add `-inputformat`,
     shell$ ${HADOOP_HOME}/bin/hadoop \
       jar ${HADOOP_HOME}/contrib/streaming/*.jar \
       -D mapreduce.job.reduces=0 \
+      -D mapred.reduce.tasks=0 \
       -D mapred.output.compress=true \
       -D mapred.output.compression.codec=com.hadoop.compression.lzo.LzopCodec \
       -inputformat com.hadoop.mapred.DeprecatedLzoTextInputFormat \
