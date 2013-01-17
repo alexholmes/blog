@@ -33,7 +33,8 @@ HDFS):
 
 BTW, if your input and output files are LZOP-compressed then this command would work:
 
-    shell$ hadoop fs -cat people.txt.lzo | lzop -dc | awk -F"," '{ print $1","$2","$3$4$5 }' | lzop -c | hadoop fs -put - people-coalesed.txt.lzo
+    shell$ hadoop fs -cat people.txt.lzo | lzop -dc | awk -F"," '{ print $1","$2","$3$4$5 }' | \
+             lzop -c | hadoop fs -put - people-coalesed.txt.lzo
 
 
 This is great if your file isn't too large, but if it's multiple gigabytes in length then you
