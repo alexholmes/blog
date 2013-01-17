@@ -88,6 +88,7 @@ Finally - to get LZO into the picture you need to add `-inputformat`,
       -D mapreduce.job.reduces=0 \
       -D mapred.reduce.tasks=0 \
       -D mapred.output.compress=true \
+      -D stream.map.input.ignoreKey=true \
       -D mapred.output.compression.codec=com.hadoop.compression.lzo.LzopCodec \
       -inputformat com.hadoop.mapred.DeprecatedLzoTextInputFormat \
       -input people.txt.lzo \
