@@ -76,3 +76,19 @@ You can view the output in HDFS with a `cat`:
 A few options in the Hadoop Streaming command are worth examining:
 
 ![awk-streaming-image](/images/awk-streaming.png)
+
+Finally - to get LZO into the picture you need to add `-inputformat`,
+ `-D mapred.output.compress` and `-D mapred.output.compression.codec` arguments:
+
+
+    shell$ HADOOP_HOME=/usr/lib/hadoop
+    shell$ ${HADOOP_HOME}/bin/hadoop \
+      jar ${HADOOP_HOME}/contrib/streaming/*.jar \
+      -D mapreduce.job.reduces=0 \
+      -D mapred.output.compress=true \
+      -D mapred.output.compression.codec=com.hadoop.compression.lzo.LzopCodec \
+      -inputformat com.hadoop.mapred.DeprecatedLzoTextInputFormat \
+      -input people.txt.lzo \
+      -output people-coalesed \
+      -mapper people.awk \
+      -file people.awk
