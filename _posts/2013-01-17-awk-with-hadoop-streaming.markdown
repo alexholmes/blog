@@ -42,7 +42,7 @@ and "MapReduce" aren't commonly used together, so what do we do? Well you could 
 Hive and write some custom user-defined functions, but this means you end up in Java which we want to
 avoid.
 
-Hadoop Streaming comes to the rescue in these situations.  Let's first create our awk script which wil be executed:
+Hadoop Streaming comes to the rescue in these situations.  Let's first create our awk script which will be executed:
 
     shell$ cat people.awk
     #!/bin/awk -f
@@ -54,7 +54,7 @@ In Linux, if you make this awk script executable, you could execute is as follow
 
     shell$ ./people.awk people.txt
 
-In MapReduce-land we don't need to join data, so we don't need to run any reducers.
+In MapReduce-land we don't need to join data in this particular example, so we don't need to run any reducers.
 Call your awk script from mappers via [Hadoop Streaming](http://hadoop.apache.org/docs/mapreduce/current/streaming.html) with this command:
 
     shell$ HADOOP_HOME=/usr/lib/hadoop
