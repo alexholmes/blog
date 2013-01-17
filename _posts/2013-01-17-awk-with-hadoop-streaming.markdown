@@ -26,7 +26,7 @@ In Linux this would take all of two seconds (excuse the awkward awk command):
 What if you wanted to quickly do the same in HDFS - and let's assume you want to write the
 results back to HDFS. One approach would be to use the HDFS CLI to stream the inputs into
 awk, and stream the awk output back into HDFS. You could do this with the HDFS `cat` and `put -` options
-(note that adding a hyphen after `put` instructs the put command stream data from standard input to
+(note that adding a hyphen after `put` instructs the put command to stream data from standard input to
 HDFS):
 
     shell$ hadoop fs -cat people.txt | awk -F"," '{ print $1","$2","$3$4$5 }' | hadoop fs -put - people-coalesed.txt
