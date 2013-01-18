@@ -45,9 +45,10 @@ body {
     font-family: "kepler-std", Helvetica, Arial, sans-serif;
     font-weight: 300;
     font-style: normal;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.8em;
     margin: 0;
+    text-align: center;
 }
 
 a {
@@ -60,11 +61,14 @@ a:hover {
 }
 
 .content {
-    margin: 0 15%;
+    margin: 0 auto;
+    width: 800px;
+    text-align: left;
+    /*margin: 0 15%;*/
 }
 
 .related {
-    padding: 0 15%;
+    /*padding: 0 15%;*/
 }
 
 .strap {
