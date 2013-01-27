@@ -41,5 +41,6 @@ by the shell.
     shell$ eval ${cmd}
     the cat
 
-The morale of this story is that if you want to execute a variable that includes any shell operators
-(such as the pipe in our example) - then make sure you `eval`.
+The morale of this story is that if you want to execute a variable that includes any shell constructs
+(such as the pipe in our example) - then make sure you `eval`. Examples of shell constructs include
+redirections (i.e. `echo "the cat" > file1.txt`), shell conditionals, loops and functions.
