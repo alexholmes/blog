@@ -27,12 +27,12 @@ shell variable, and then executing it. So why, then, would the output be this?
      sat on the mat' | grep cat
 
 This is something that has bitten me in the past when I write shell scripts. What's happening
-here is that the shall executes the contents of variable `cmd` as a single utility, so
-the shell passes everything after `echo` as arguments to echo utility, including the pipe.
+here is that the shell executes the contents of variable `cmd` as a single command, which means that
+everything after `echo` are treated as arguments to the echo utility, including the pipe.
 
 ![variable-execution](/images/variable-execution.png)
 
-What we actually need to happen is to have the contents of `cmd` evaluated by the shell so that
+What we actually need to happen is to have the entire contents of `cmd` evaluated by the shell so that
 the shell can create the pipeline between the two utilities. This is where the utility
 [eval](http://www.unix.com/man-page/posix/1posix/eval/)
 comes into play - `eval` tells the shell to concatenate the arguments and have them executed
