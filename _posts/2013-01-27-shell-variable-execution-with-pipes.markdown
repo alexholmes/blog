@@ -6,7 +6,7 @@ categories:
   -- *nix
 ---
 
-I touched a little on [pipes](/2012/10/29/useless-cats/) in a previous post.
+I touched a little on [pipes](/2012/10/30/useless-cats/) in a previous post.
 Here's a quick example of an `echo` utility which outputs two lines, and a pipe operator
 which redirects that output to a `grep` utility which performs a simple filter to only include
 lines that contain the word "cat":
