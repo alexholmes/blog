@@ -1,0 +1,8 @@
+# Block People Search Engines
+User-agent: Yasni
+User-agent: Pipl
+User-agent: 123People
+User-agent: MyOnID
+Disallow: /
+
+Sitemap: http://grepalex.com/sitemap.xml
