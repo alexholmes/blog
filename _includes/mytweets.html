@@ -1,0 +1,66 @@
+
+<div class="bounce">
+<div class="related">
+
+  <div class="myposts">
+
+  <h3>All posts</h3>
+  <p>
+  <table>
+    <tbody>
+    {% for post in site.posts %}
+    <tr>
+      <td valign="top">
+        &raquo;
+      </td>
+      <td>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </p>
+  <br />
+</div>
+
+{% if site.twitter_user %}
+<div class="related">
+<h3>Latest Tweets</h3>
+  <div id="tweets">
+    <p>Status updating sdf ...</p>
+  </div>
+
+  <!-- lazily load tweets; derived from http://decodize.com/html/moving-from-wordpress-to-octopress/ -->
+  <script type="text/javascript">
+    (function(w, d, s) {
+      function go(){
+        var js, fjs = d.getElementsByTagName(s)[0], load = function(url, id) {
+          if (d.getElementById(id)) { return; }
+          js = d.createElement(s);
+          js.src = url;
+          js.id = id;
+          js.async = true;
+          $(js).load(function(){
+            getTwitterFeed("{{site.twitter_user}}", {{site.twitter_tweet_count}}, {{site.twitter_show_replies}});
+      });
+      fjs.parentNode.insertBefore(js, fjs);
+    };
+    load('{{ root_url }}/javascript/twitter.js', 'recentTweets');
+    }
+    if (w.addEventListener) { w.addEventListener("load", go, false); }
+    else if (w.attachEvent) { w.attachEvent("onload", go); }
+    }(window, document, 'script'));
+  </script>
+
+  <script src="{{ root_url }}/javascript/twitter.js" type="text/javascript"> </script>
+  {% if site.twitter_follow_button %}
+  <a href="http://twitter.com/{{ site.twitter_user }}" class="twitter-follow-button" data-show-count="{{ site.twitter_show_follower_count }}">Follow @{{ site.twitter_user }}</a>
+  {% else %}
+  <p>Follow <a href="http://twitter.com/{{site.twitter_user}}">@{{ site.twitter_user }}</a></p>
+  {% endif %}
+</div>
+{% endif %}
+
+</div>
+</div>
