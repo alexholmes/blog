@@ -175,6 +175,11 @@ The following commands will install Jekyll on your VM:
     shell$ sudo yum install gcc rubygems ruby-devel
     shell$ sudo gem install jekyll
 
+## Install Pygments (for code syntax highlighting)
+
+    shell% sudo yum install python-setuptools
+    shell$ sudo easy_install Pygments
+
 ## Create a crontab entry and script to generate the blog
 
 We're going to setup Jekyll to write to the Nginx HTML directory, and since we're going to do this
