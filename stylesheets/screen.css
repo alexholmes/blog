@@ -94,6 +94,8 @@ a:hover {
     position: relative;
 }
 
+.clear { clear:both; }
+
 .bio img {
     margin: 20px;
     margin-top:25px;
@@ -109,8 +111,38 @@ a:hover {
     font-weight: bold;
 }
 
+
+/* Start of Column CSS */
+.container2 {
+    clear:left;
+    float:left;
+    width:100%;
+    overflow:hidden;
+}
+.container1 {
+    float:left;
+    width:100%;
+    position:relative;
+    right:50%;
+}
+.col1 {
+    float:left;
+    width:46%;
+    position:relative;
+    left:52%;
+    overflow:hidden;
+}
+.col2 {
+    float:left;
+    width:46%;
+    position:relative;
+    left:56%;
+    overflow:hidden;
+}
+
+
 .bounce {
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin: 0 auto;
     margin-bottom: 2em;
     text-align: left;
@@ -336,14 +368,14 @@ table tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
 }
 
-.related table {
+.container2 table {
     background-color: #FAF9F8;
     border: none;
     padding-left: 0px;
     margin-left: 0px;
 }
 
-.related table td {
+.container2 table td {
     background-color: #FAF9F8;
     padding: 0px 3px 5px 0px;
 }

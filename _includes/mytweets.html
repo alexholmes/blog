@@ -1,32 +1,35 @@
 
-<div class="bounce">
-<div class="related">
+<div class="container2">
+<div class="container1">
 
-  <div class="myposts">
+  <div class="col1">
 
-  <h3>All posts</h3>
-  <p>
-  <table>
-    <tbody>
-    {% for post in site.posts %}
-    <tr>
-      <td valign="top">
-        &raquo;
-      </td>
-      <td>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-      </td>
-    </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-  </p>
-  <br />
+    <div class="myposts">
+
+      <h3>All posts</h3>
+      <p>
+      <table>
+        <tbody>
+        {% for post in site.posts %}
+        <tr>
+          <td valign="top">
+            &raquo;
+          </td>
+          <td>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </p>
+      <br />
+    </div>
 </div>
 
-{% if site.twitter_user %}
-<div class="related">
-<h3>Latest Tweets</h3>
+
+<div class="col2">
+  <h3>Latest Tweets</h3>
   <div id="tweets">
     <p>Status updating sdf ...</p>
   </div>
@@ -60,7 +63,7 @@
   <p>Follow <a href="http://twitter.com/{{site.twitter_user}}">@{{ site.twitter_user }}</a></p>
   {% endif %}
 </div>
-{% endif %}
 
 </div>
 </div>
+<div class="clear"></div>
