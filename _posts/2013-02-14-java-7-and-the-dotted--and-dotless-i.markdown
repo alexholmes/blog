@@ -81,7 +81,7 @@ Java 7: u0069 u0307
 
 It looks like the first codepoint is indeed correct (the Latin lower-case "i"), but what is
 `\u0307`? [Wikipedia tells us](http://en.wikipedia.org/wiki/Dot_(diacritic)) it's the "combining
-dot above", which is to say that when rendered
+dot above", which is to say that it is displayed as a single character (called a [grapheme](http://en.wikipedia.org/wiki/Grapheme))
 it modifies the previous character with an additional dot, just like we saw in our example.
 
 What's puzzling about this is why do we see the behaviour of `toLowerCase` change between Java
