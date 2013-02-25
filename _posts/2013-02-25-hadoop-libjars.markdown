@@ -58,7 +58,7 @@ to access the configuration:
 public class SmallFilesMapReduce extends Configured implements Tool {
 
   public final int run(final String[] args) throws Exception {
-        Job job = new Job(getConf());
+        Job job = new Job(super.getConf());
         ...
   }
 {% endhighlight %}
