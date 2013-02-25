@@ -44,7 +44,7 @@ class to parse-out the options:
 {% highlight java %}
 public static void main(final String[] args) throws Exception {
   Configuration conf = new Configuration();
-  int res = ToolRunner.run(conf, new com.example.MyTool(conf), args);
+  int res = ToolRunner.run(conf, new com.example.MyTool(), args);
   System.exit(res);
 }
 {% endhighlight %}
