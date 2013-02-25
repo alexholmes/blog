@@ -51,15 +51,17 @@ public static void main(final String[] args) throws Exception {
 
 It is **crucial** that the configuration object being passed into the `ToolRunner.run` method
 is the same one that you're using when setting-up your job. To guarantee this, your class should
-use the `getConf()` method defined in `Configurable` (and implemented `Configured`)
+use the `getConf()` method defined in `Configurable` (and implemented in `Configured`)
 to access the configuration:
 
 {% highlight java %}
 public class SmallFilesMapReduce extends Configured implements Tool {
 
   public final int run(final String[] args) throws Exception {
-        Job job = new Job(super.getConf());
-        ...
+    Job job = new Job(super.getConf());
+    ...
+    job.waitForCompletion(true);
+    return ...;
   }
 {% endhighlight %}
 
