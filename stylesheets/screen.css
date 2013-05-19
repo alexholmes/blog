@@ -289,9 +289,9 @@ h1 {
 }
 
 #post code {
-    color: black;
-    background-color: #EEE;
-    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    /*color: black;*/
+    /*background-color: #EEE;*/
+    /*font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;*/
 }
 
 #post blockquote cite:before {
