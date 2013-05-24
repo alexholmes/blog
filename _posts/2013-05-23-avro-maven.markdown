@@ -6,102 +6,142 @@ categories:
   -- avro
 ---
 
-[Avro](http://avro.apache.org/) has the ability to generate Java beans given an Avro schema file.
-Avro also has a plugin which allows you to generate the Java sources from Maven. It's a good idea
- to use your build system to generate sources from your schema, rather than check-in the generated
-sources.
+[Avro](http://avro.apache.org/) has the ability to generate Java code from Avro schema, IDL and protocol files.
+Avro also has a plugin which allows you to generate these Java sources directly from Maven, which is a good idea
+as it avoids issues that can arise if your schema/protocol files stray from the checked-in code generated equivalents.
 
-Today I create a simple GitHub project called [avro-maven](https://github.com/alexholmes/avro-maven) because
+Today I created a simple GitHub project called [avro-maven](https://github.com/alexholmes/avro-maven) because
 I had to fiddle a bit to get Avro and Maven to play nice. The GitHub project is self-contained and also has a
-README which goes over the basics. If you don't feel like moseying over there, here's the Maven
-[pom.xml](https://github.com/alexholmes/avro-maven/blob/master/pom.xml) I created:
+README which goes over the basics. In this post I'll go over how to use Maven to generate code for schema, IDL
+and protocol files.
+
+# pom.xml updates to support the Avro plugin
+
+Avro schema files only define types, whereas IDL and protocol files model types as well as RPC semantics such as messages.
+The only difference between IDL and protocol files is that IDL files are Avro's DSL for specifying RPC, versus
+protocol files are the same in JSON form.
+
+Each type of file has an entry that can be used in the `goals` element as can be seen below. All three can be used together,
+or if you only have schema files you can safely remove the `protocol` and `idl-protocol` entries (and vice-versa).
 
 {% highlight xml %}
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<plugin>
+  <groupId>org.apache.avro</groupId>
+  <artifactId>avro-maven-plugin</artifactId>
+  <version>${avro.version}</version>
+  <executions>
+    <execution>
+      <phase>generate-sources</phase>
+      <goals>
+        <goal>schema</goal>
+        <goal>protocol</goal>
+        <goal>idl-protocol</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
 
-  <groupId>com.alexholmes.avro.maven</groupId>
-  <artifactId>avro-maven</artifactId>
-  <version>0.0.1</version>
-  <packaging>jar</packaging>
+...
 
-  <name>Avro Maven Example</name>
-  <url>https://github.com/alexholmes/avro-maven</url>
+<dependencies>
+  <dependency>
+    <groupId>org.apache.avro</groupId>
+    <artifactId>avro</artifactId>
+    <version>${avro.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.avro</groupId>
+    <artifactId>avro-maven-plugin</artifactId>
+    <version>${avro.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.avro</groupId>
+    <artifactId>avro-compiler</artifactId>
+    <version>${avro.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.avro</groupId>
+    <artifactId>avro-ipc</artifactId>
+    <version>${avro.version}</version>
+  </dependency>
+</dependencies>
+{% endhighlight %}
 
-  <properties>
-    <jdkLevel>1.6</jdkLevel>
-    <requiredMavenVersion>[2.1,)</requiredMavenVersion>
-    <main.basedir>${project.basedir}</main.basedir>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
-    <maven.compiler>2.0.2</maven.compiler>
-    <avro.version>1.7.4</avro.version>
-  </properties>
+By default the plugin assumes that your Avro sources are located in `${basedir}/src/main/avro`, and that you want
+your generated sources to be written to `${project.build.directory}/generated-sources/avro`, where `${project.build.directory}`
+is typically the `target` directory.  Keep reading if you want to change any of these settings.
 
-  <description>
-    A simple example of how Avro's Maven plugin can be used to compile Avro schema files into Java.
-  </description>
+# Avro configurables
 
-  <developers>
-    <developer>
-      <id>aholmes</id>
-      <name>Alex Holmes</name>
-      <email>grep.alex@gmail.com</email>
-      <url>http://grepalex.com</url>
-    </developer>
-  </developers>
+Luckily Avro's Maven plugin offers the ability to customize various code generation settings. The following table
+shows the configurables that can be used for any of the schema, IDL and protocol code generators.
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>${jdkLevel}</source>
-          <target>${jdkLevel}</target>
-          <showDeprecation>true</showDeprecation>
-          <showWarnings>true</showWarnings>
+<table>
+    <tr>
+        <td><strong>Configurable</strong></td>
+        <td><strong>Default value</strong></td>
+        <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+        <td>sourceDirectory</td>
+        <td>${basedir}/src/main/avro</td>
+        <td>The Avro source directory for schema, protocol and IDL files.</td>
+    </tr>
+    <tr>
+        <td>outputDirectory</td>
+        <td>${project.build.directory}/generated-sources/avro</td>
+        <td>The directory where Avro writes code-generated sources.</td>
+    </tr>
+    <tr>
+        <td>testSourceDirectory</td>
+        <td>${basedir}/src/test/avro</td>
+        <td>The input directory containing any Avro files used in testing.</td>
+    </tr>
+    <tr>
+        <td>testOutputDirectory</td>
+        <td>${project.build.directory}/generated-test-sources/avro</td>
+        <td>The output directory where Avro writes code-generated files for your testing purposes.</td>
+    </tr>
+    <tr>
+        <td>fieldVisibility</td>
+        <td>PUBLIC_DEPRECATED</td>
+        <td>Determines the accessibility of fields (e.g. whether they are public or private).
+        Must be one of PUBLIC, PUBLIC_DEPRECATED or PRIVATE. PUBLIC_DEPRECATED merely adds a
+        deprecated annotation to each field, e.g. "@Deprecated public long time".</td>
+    </tr>
+</table>
 
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.avro</groupId>
-        <artifactId>avro-maven-plugin</artifactId>
-        <version>${avro.version}</version>
-        <executions>
-          <execution>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>schema</goal>
-            </goals>
-            <configuration>
-              <sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
-              <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.avro</groupId>
-      <artifactId>avro</artifactId>
-      <version>${avro.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.avro</groupId>
-      <artifactId>avro-maven-plugin</artifactId>
-      <version>${avro.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.avro</groupId>
-      <artifactId>avro-compiler</artifactId>
-      <version>${avro.version}</version>
-    </dependency>
-  </dependencies>
-</project>
+In addition, the `includes` and `testIncludes` configurables can also be used to specify alternative
+file extensions to the defaults, which are `**/*.avsc`, `**/*.avpr` and `**/*.avdl` for schema, protocol and
+IDL files respectively.
+
+Let's look at an example of how we can specify all of these options for schema compilation.
+
+{% highlight xml %}
+<plugin>
+  <groupId>org.apache.avro</groupId>
+  <artifactId>avro-maven-plugin</artifactId>
+  <version>${avro.version}</version>
+  <executions>
+    <execution>
+      <phase>generate-sources</phase>
+      <goals>
+        <goal>schema</goal>
+      </goals>
+      <configuration>
+        <sourceDirectory>${project.basedir}/src/main/myavro/</sourceDirectory>
+        <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+        <testSourceDirectory>${project.basedir}/src/main/myavro/</testSourceDirectory>
+        <testOutputDirectory>${project.basedir}/src/test/java/</testOutputDirectory>
+        <fieldVisibility>PRIVATE</fieldVisibility>
+        <includes>
+          <include>**/*.avro</include>
+        </includes>
+        <testIncludes>
+          <testInclude>**/*.test</testInclude>
+      </testIncludes>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
 {% endhighlight %}

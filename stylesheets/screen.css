@@ -333,7 +333,6 @@ h1 {
 em {
     color: #3B3A40;
 }
-
 table {
     background: #ccc;
     margin: 20px;
@@ -342,6 +341,7 @@ table {
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
+
 
 table th {
     padding: 4px 10px;
@@ -355,7 +355,7 @@ table td {
 table tr.even td {
     background: #eee;
 }
-
+/*
 table tr:last-child td:first-child {
     -moz-border-radius-bottomleft: 10px;
     -webkit-border-bottom-left-radius: 10px;
@@ -379,3 +379,4 @@ table tr:last-child td:last-child {
     background-color: #FAF9F8;
     padding: 0px 3px 5px 0px;
 }
+    */
