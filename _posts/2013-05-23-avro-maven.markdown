@@ -145,3 +145,6 @@ Let's look at an example of how we can specify all of these options for schema c
   </executions>
 </plugin>
 {% endhighlight %}
+
+As a reminder everything covered in this blog article can be seen in action in the GitHub repo at
+[https://github.com/alexholmes/avro-maven](https://github.com/alexholmes/avro-maven).
