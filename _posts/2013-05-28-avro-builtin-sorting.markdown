@@ -175,6 +175,28 @@ which makes sense since we specified that it should be ignored in the schema. Ho
 value of the `counter` field. All records that had identical `station` and `time` values went to the same reducer
 invocation, evidenced by the increasing value of `counter`. This is essentially secondary sort!
 
+## Sort order
+
+The [Avro documentation](http://avro.apache.org/docs/current/spec.html#order) will give you an idea around how
+ordering is performed for different Avro types. Field oredering is ascending by default, but you can make it descending
+by setting the value of the "order" field to "descending":
+
+{% highlight json %}
+{"type": "record", "name": "com.alexholmes.avro.Weather",
+ "doc": "A weather reading.",
+ "fields": [
+     {"name": "station", "type": "string"},
+     {"name": "time", "type": "long"},
+     {"name": "temp", "type": "int", "order": "descending"},
+     {"name": "counter", "type": "int", "order": "ignore", "default": 0}
+ ]
+}
+{% endhighlight %}
+
+
+## Limitations
+
+
 Now, all of this greatness isn't without some limitations:
 
 1. You can't support two MapReduce jobs that use the same Avro key, but have different sorting/partitioning/grouping requirements.
