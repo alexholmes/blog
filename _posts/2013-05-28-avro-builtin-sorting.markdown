@@ -178,7 +178,7 @@ invocation, evidenced by the increasing value of `counter`. This is essentially 
 ## Sort order
 
 The [Avro documentation](http://avro.apache.org/docs/current/spec.html#order) will give you an idea around how
-ordering is performed for different Avro types. Field oredering is ascending by default, but you can make it descending
+ordering is performed for different Avro types. Field ordering is ascending by default, but you can make it descending
 by setting the value of the "order" field to "descending":
 
 {% highlight json %}
