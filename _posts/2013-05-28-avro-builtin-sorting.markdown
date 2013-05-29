@@ -154,8 +154,8 @@ basically means that we have the ability to perform secondary sorting. Let's exa
 }
 {% endhighlight %}
 
-It's pretty much identical to the first schema, the only difference being that the last two fields are flagged
-as being "ignored" for sorting/partitioning/grouping. Let's run the same (other than modified to work with the
+It's pretty much identical to the first schema, the only difference being that the last two fields have an additional
+"order" field whose value is set to "ignore". Let's run the same (other than modified to work with the
 different schema) MapReduce code
 [GitHub source](https://github.com/alexholmes/avro-sorting/blob/master/src/main/java/com/alexholmes/avro/sort/basic/AvroSortWithIgnores.java)
 as above against this new
@@ -195,7 +195,6 @@ by setting the value of the "order" field to "descending":
 
 
 ## Limitations
-
 
 Now, all of this greatness isn't without some limitations:
 
