@@ -96,9 +96,17 @@ a:hover {
 
 .clear { clear:both; }
 
-.bio img {
+.bio .image {
     margin: 20px;
     margin-top:25px;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.bio img {
+    margin: 20px;
+    margin-top:125px;
     left: 0;
     position: absolute;
     top: 0;
