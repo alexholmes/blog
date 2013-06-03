@@ -1,9 +1,9 @@
 <div class="row-fluid marketing">
     <div class="span7">
-        <h4>RECENT BLOG POSTS</h4>
+        <h3>RECENT BLOG POSTS</h3>
 
         {% for post in site.posts %}
-        <h5>&raquo; <a href="{{ post.url }}">{{ post.title }}</a></h5>
+        <h4>&raquo; <a href="{{ post.url }}">{{ post.title }}</a></h4>
 
         <p>{{ post.quote }}</p>
 
@@ -13,10 +13,10 @@
     </div>
 
     <div class="span5">
-        <h4>TWITTER A-HAPPENINGS</h4>
+        <h3>TWITTER A-HAPPENINGS</h3>
 
         <div id="tweets">
-            <p>Status updating sdf ...</p>
+            <p>Updating ...</p>
         </div>
 
         <!-- lazily load tweets; derived from http://decodize.com/html/moving-from-wordpress-to-octopress/ -->
