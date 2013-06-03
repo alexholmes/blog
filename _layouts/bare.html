@@ -15,14 +15,14 @@
             padding-top: 20px;
             padding-bottom: 40px;
             font-family: "kepler-std", Helvetica, Arial, sans-serif;
-            font-size: 16px;
+            /*font-size: 16px;*/
             line-height: 1.8em;
         }
 
             /* Custom container */
         .container-narrow {
             margin: 0 auto;
-            max-width: 640px;
+            max-width: 740px;
         }
         .container-narrow > hr {
             margin: 30px 0;
@@ -40,6 +40,10 @@
         .jumbotron {
             margin: 40px 0;
             text-align: center;
+        }
+
+        .content li {
+            margin-bottom: 1em;
         }
 
     </style>
@@ -85,8 +89,9 @@
     {% include header.html %}
 
     <hr>
-
+    <div class="content">
     {{content}}
+    </div>
 
     <hr>
 
