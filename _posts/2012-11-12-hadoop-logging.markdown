@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Controlling user logging in Hadoop
+quote: A look at various approaches that can limit the impact of overly aggressive logging in MapReduce.
 date: 2012-11-12 09:20:00 -05:00
 categories:
   -- hadoop

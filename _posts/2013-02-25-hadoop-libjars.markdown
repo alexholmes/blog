@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Using the libjars option with Hadoop
+quote: The Hadoop CLI has an option for indicating any JAR's that should be be loaded by the MapReduce task classloader. In this post you'll see how to use this option, as well as how to ensure that your MapReduce driver properly supports these JAR's.
 date: 2013-02-25 09:20:00 -05:00
 categories:
   -- hadoop

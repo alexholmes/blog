@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Java 6 and 7 with the dotted/dotless I
+quote: The interesting case of the dotted and dotless "I" in Java.
 date: 2013-02-14 09:00:00 -05:00
 categories:
   -- Java

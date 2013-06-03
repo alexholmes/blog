@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Executing variables that contain shell operators
+quote: A look at how the eval command can be used to execute a command pipeline.
 date: 2013-01-27 17:20:00 -05:00
 categories:
   -- *nix

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: LZOP decompression - revenge of the useless cat
+quote: The nuances of using the lzop CLI to view the contents of LZOP files.
 date: 2013-02-08 09:00:00 -05:00
 categories:
   -- *nix

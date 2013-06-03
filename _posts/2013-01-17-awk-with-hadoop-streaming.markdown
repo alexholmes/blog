@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Using awk and friends with Hadoop
+quote: How to use Linux tools such as awk in MapReduce.
 date: 2013-01-17 09:20:00 -05:00
 categories:
   -- hadoop

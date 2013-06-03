@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Avro's built-in sorting
+quote: A look at how Avro supports sorting in MapReduce.
 date: 2013-05-28 09:20:00 -05:00
 categories:
   -- avro

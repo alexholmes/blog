@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Installing AsciiDoc on OSX
+quote: AsciiDoc is a cool markup language, similar to markdown, and comes with tools to generate AsciiDoc to DocBook and PDF formats. Here you'll see how to get it up and running on OSX.
 date: 2013-02-17 09:00:00 -05:00
 categories:
   -- OSX

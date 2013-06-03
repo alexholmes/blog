@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Using Avro's code generation from Maven
+quote: Avro has a Maven plugin which lets you generate code from Avro schema, IDL and protocol files. This post looks at how to use the plugin and its various options.
 date: 2013-05-24 09:20:00 -05:00
 categories:
   -- avro

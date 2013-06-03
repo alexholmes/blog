@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Pipes and useless cats
+quote: A post for all you dog lovers about instances of unloved cats in Linux.
 date: 2012-10-29 22:20:00 -05:00
 categories:
   -- *nix

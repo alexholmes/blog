@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Configuring and tuning MapReduce's shuffle
+quote: A look at the various MapReduce shuffle configurables, and where in the MapReduce process they are applied.
 date: 2012-11-26 09:20:00 -05:00
 categories:
   -- hadoop

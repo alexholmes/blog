@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Bucketing, multiplexing and combining in Hadoop - post 1
+quote: The first in a series of MapReduce data organization patterns, which will cover various common actions such as data bucketing, multiplexing and combining.
 date: 2013-05-20 09:20:00 -05:00
 categories:
   -- hadoop
