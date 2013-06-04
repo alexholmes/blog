@@ -97,3 +97,7 @@ Finally - to get LZO into the picture you need to add `-inputformat`,
       -output people-coalesed \
       -mapper people.awk \
       -file people.awk
+
+Update 6/3/2013:
+
+This article has a <a href="http://science.webhostinggeeks.com/koriscenje-awk-i-prijatelja">Serbo-Croatian</a> translation by Anja Skrba.
