@@ -72,9 +72,9 @@ JAR's won't be copied to the Distributed Cache or loaded in the remote task JVM'
 
 It's the `ToolRunner.run` method (actually it delegates the command parsing to `GenericOptionsParser`)
 which actually parses-out the `libjars` argument, and adds to the Configuration object  a value for
-the `tmpjar` property. So a quick way to make sure that this step is working is to look at the job file for
+the `tmpjars` property. So a quick way to make sure that this step is working is to look at the job file for
 your MapReduce job (there's a link when viewing the job details from the JobTracker), and make sure
-that the `tmpjar` configuration name exists with a value identical to the path that you specified in
+that the `tmpjars` configuration name exists with a value identical to the path that you specified in
 your command.  You can also use the command-line to search for the `libjars` configuration in HDFS
 
 {% highlight bash %}
