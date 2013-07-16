@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bucketing, multiplexing and combining in Hadoop - post 1
+title: Bucketing, multiplexing and combining in Hadoop - part 1
 quote: The first in a series of MapReduce data organization patterns, which will cover various common actions such as data bucketing, multiplexing and combining.
 date: 2013-05-20 09:20:00 -05:00
 categories:
@@ -364,4 +364,4 @@ exactly the same output record types. For example, you wouldn't be able to suppo
 3. `MultipleOutputFormat` exists in the `mapred` package, so it won't work with a job that requires use of the `mapreduce` package.
 
 All is not lost if you bump into either one of these issues, as you'll discover in the
-[/2013/07/16/multipleoutputs-part2/](next blog post in this series).
+[http://grepalex.com/2013/07/16/multipleoutputs-part2/](next blog post in this series).

@@ -6,7 +6,7 @@ categories:
   -- hadoop
 ---
 
-In the [first post of this series](/2013/05/20/multipleoutputs-part1/), we looked at how the `MultipleOutputFormat` class could be used in a task to write
+In the [first post of this series](http://grepalex.com/2013/05/20/multipleoutputs-part1/), we looked at how the `MultipleOutputFormat` class could be used in a task to write
 to multiple output files. This approach had a few shortcomings which included that it couldn't be used in the map-side of a
 job that used reducers, and it only worked with the old `mapred` API.
 
@@ -140,4 +140,4 @@ API you are forced to define your partitions in your job driver.
 There are plenty of things to like about `MultipleOutputs`, namely its support for both "old" and "new" MapReduce API's,
 and its support for multiple `OutputFormat` classes. Its only real downside is that multi named outputs are only
 supported in the old `mapred` API, so those looking for dynamic partitions in the new `mapreduce` API are not supported
-by either `MultipleOutputs` or `MultipleOutputFormat` described in [part 1](/2013/05/20/multipleoutputs-part1/).
+by either `MultipleOutputs` or `MultipleOutputFormat` described in [part 1](http://grepalex.com/2013/05/20/multipleoutputs-part1/).
