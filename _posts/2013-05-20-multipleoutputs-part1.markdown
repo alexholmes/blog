@@ -363,4 +363,5 @@ exactly the same output record types. For example, you wouldn't be able to suppo
 `<IntWritable, Text>` for one output file, and have another RecordWriter that emitted `<Text, Text>`.
 3. `MultipleOutputFormat` exists in the `mapred` package, so it won't work with a job that requires use of the `mapreduce` package.
 
-All is not lost if you bump into either one of these issues, as you'll discover in the next blog post.
+All is not lost if you bump into either one of these issues, as you'll discover in the
+[/2013/07/16/multipleoutputs-part2/](next blog post in this series).
