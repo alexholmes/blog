@@ -6,7 +6,7 @@ categories:
   -- hadoop
 ---
 
-In my JavaOne talk today I presented changes that are happening in Hadoop, where it's shaking off it's batch-based
+In my [JavaOne talk today](https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=7356) I presented changes that are happening in Hadoop, where it's shaking off it's batch-based
 shackles and enabling a new Hadoop platform that can support a mix of processing systems, from stream-processing
 systems to NoSQL systems.
 
