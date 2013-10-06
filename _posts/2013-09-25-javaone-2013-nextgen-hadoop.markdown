@@ -2,6 +2,7 @@
 layout: post
 title: Next Generation Hadoop - It's Not Just Batch!
 date: 2013-09-25 09:20:00 -05:00
+quote: Slides and additional reading from my JavaOne 2013 talk on next-generation Hadoop - mixing real-time and batch.
 categories:
   -- hadoop
 ---

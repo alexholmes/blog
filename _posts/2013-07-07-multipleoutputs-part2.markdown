@@ -2,6 +2,7 @@
 layout: post
 title: Bucketing, multiplexing and combining in Hadoop - part 2
 date: 2013-07-16 09:20:00 -05:00
+quote: In this part we examine the MultipleOutputs class for a more flexible way to write out multiple outputs from your mappers and reducers.
 categories:
   -- hadoop
 ---
