@@ -115,12 +115,14 @@ A couple of things worth noting in the above code example:
 2.  The `values` method on an enum returns an array of all of the enum fields in order of definition, which in our example is the last
 name followed by the first name - exactly the order in which we want the sorting to occur.
 
-You're done! You can look at the complete source in [SecondarySort.java](https://github.com/alexholmes/htuple/blob/master/examples/src/main/java/org/htuple/examples/SecondarySort.java).
-The [htuple github page](https://github.com/alexholmes/htuple) has instructions for downloading, building and running this same example in a couple of easy steps.
-If you examine the output of the MapReduce job in HDFS you'll see that indeed all the records are sorted by last
+You're done! If you examine the output of the MapReduce job in HDFS you'll see that indeed all the records are sorted by last
 and first name.
 
     $ hadoop fs -cat output/part*
     Smith	Anne
     Smith	John
     Smith	Ken
+
+You can look at the complete source in [SecondarySort.java](https://github.com/alexholmes/htuple/blob/master/examples/src/main/java/org/htuple/examples/SecondarySort.java).
+The [htuple github page](https://github.com/alexholmes/htuple) has instructions for downloading, building and running this same example in a couple of easy steps.
+There's also a page which shows the [types supported by htuple](https://github.com/alexholmes/htuple/blob/master/DATATYPES.md).
