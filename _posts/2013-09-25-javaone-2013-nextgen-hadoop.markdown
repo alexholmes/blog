@@ -212,4 +212,3 @@ solution to most distributed processing use cases.
 
 
 
-The example that refers to HADOOP_CLASSPATH is using it in the context of a local JAR. In the last example in the blog, both HADOOP_CLASSPATH and LIBJARS are referring to JAR's on the local filesystem. The JAR's in HADOOP_CLASSPATH are only used by the client-side of MapReduce (i.e. your driver code), and the LIBJARS is used to copy the JAR's into HDFS for use by the map and reduce processes in Hadoop.
