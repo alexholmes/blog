@@ -8,7 +8,8 @@ categories:
 ---
 
 Google really screwed the pooch with their protobuf 2.5 release. Code generated with protobuf 2.5 is
-binary incompatible with older protobuf libraries.  Unfortunately the current stable release
+binary incompatible with older protobuf libraries (I guess Google missed the [semantic versioning](http://semver.org/) boat on
+this release).  Unfortunately the current stable release
 of Flume 1.4 packages protobuf 2.4.1 and if you try and use HDFS on Hadoop 2.2 as a sink you'll be smacked
 with the following exception:
 
@@ -29,3 +30,6 @@ The following command moves them into your home directory.
     $ mv ${flume_bin}/lib/{protobuf-java-2.4.1.jar,guava-10.0.1.jar} ~/
 
 Now if you restart your Flume agent you'll be able to target HDFS as a sink with Hadoop 2.2. Great success!
+
+Flume's next release will [move to protobuf 2.5](https://issues.apache.org/jira/browse/FLUME-2172) so this problem
+should magically disappear in due course.
