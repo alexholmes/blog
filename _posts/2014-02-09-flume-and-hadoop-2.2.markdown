@@ -8,8 +8,8 @@ categories:
 ---
 
 Google really screwed the pooch with their protobuf 2.5 release. Code generated with protobuf 2.5 is
-binary incompatible with protobuf 2.4 and older libraries.  Unfortunately the current stable release
-of Flume 1.4 packages protobuf 2.4.1 and if you try and use Hadoop 2.2 as a sink you'll be smacked
+binary incompatible with older protobuf libraries.  Unfortunately the current stable release
+of Flume 1.4 packages protobuf 2.4.1 and if you try and use HDFS on Hadoop 2.2 as a sink you'll be smacked
 with the following exception:
 
     java.lang.VerifyError: class org.apache.hadoop.security.proto.SecurityProtos$GetDelegationTokenRequestProto
@@ -22,7 +22,7 @@ with the following exception:
         at org.apache.hadoop.hdfs.NameNodeProxies.createNNProxyWithClientProtocol(NameNodeProxies.java:328)
         at org.apache.hadoop.hdfs.NameNodeProxies.createNonHAProxy(NameNodeProxies.java:235)
 
-Hadoop 2.2 uses protobuf 2.5.0 for its RPC, and Flume loads its own packaged version of protobuf ahead of Hadoop's,
+Hadoop 2.2 uses protobuf 2.5 for its RPC, and Flume loads its older packaged version of protobuf ahead of Hadoop's,
 which causes this error. To fix this you'll need to move both protobuf and guava out of Flume's lib directory.
 The following command moves them into your home directory.
 
