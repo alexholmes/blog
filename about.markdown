@@ -13,7 +13,7 @@ Data problems across a number of projects. He is the author of
 published by Manning Publications. He has presented at JavaOne and Jazoon.
 
 <div style="text-align:center;">
-<img src="/images/me-bw-square1.png"/>
+<img src="/images/me-bw-medium-circle.png"/>
 </div>
 
 If you want to see what Alex is up take a look at:
