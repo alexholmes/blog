@@ -20,5 +20,5 @@ command to change the Hadoop version being targeted:
 
 Now all you need to do is target the hadoop-2 profile in Maven and you'll be all set:
 
-    mvn -DskipTests=true clean package -P hadoop-2
+    mvn -DskipTests=true -P hadoop-2 clean package assembly:single
 
