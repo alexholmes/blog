@@ -17,19 +17,30 @@ projection is a normal part of working with the data.
 Hive and Impala.
 3. It supports Avro, Thrift and Protocol Buffers.
 
-The last item raises a question - how does Parquet work with Avro and friends?
-Parquet is actually a *storage format* (with a [formal file format](https://github.com/Parquet/parquet-format) ),
-and integrates with the Avro, Thrift and Protocol Buffers *object models*.
+The last item raises a question - how does Parquet work with Avro and friends? To understand this you'll need to understand
+three concepts:
 
-![Image of storage formats and object models](/images/parquet_storage_object.png)
+1. *Storage formats*, which are binary representations of data. For Parquet this is contained within the
+  [parquet-format](https://github.com/Parquet/parquet-format) GitHub project.
+2. *Object model converters*, whose job it is to map between an external object model and Parquet's internal data
+types. These converters exist in the [parquet-mr](https://github.com/Parquet/parquet-mr) GitHub project.
+3. *Object models*, which are in-memory representations of data. [Avro](http://avro.apache.org/),
+[Thrift](http://thrift.apache.org/),
+[Protocol Buffers](https://code.google.com/p/protobuf/),
+[Hive](http://hive.apache.org/) and
+[Pig](http://pig.apache.org/) are
+all examples of object models. Parquet does actually supply an
+[example object model](https://github.com/Parquet/parquet-mr/tree/master/parquet-column/src/main/java/parquet/example)
+(with [MapReduce support](https://github.com/Parquet/parquet-mr/tree/master/parquet-hadoop/src/main/java/parquet/hadoop/example) )
+, but the intention is that you'd use one of the other richer object models such as Avro.
+
+![Image of storage formats and object models](/images/parquet_storage_object_converter.png)
 
 Avro, Thrift and Protocol Buffers all have have their own storage formats, but Parquet doesn't utilize them in any
 way. Parquet data is always serialized using its own file format. This is why Parquet can't read files serialized using
 Avro's storage format, and vice-versa.
 
-So how does Parquet allow you to work with Avro, yet persist data using its own file format?
-That's where Parquet _converters_ come into the picture - their job is to map object model instances
-to Parquet's internal values (and vice-versa). Let's examine what happens when you write an Avro object to Parquet:
+Let's examine what happens when you write an Avro object to Parquet:
 
 ![Avro/Parquet write path](/images/parquet_avro_write.png)
 
