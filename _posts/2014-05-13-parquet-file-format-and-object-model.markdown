@@ -37,8 +37,8 @@ all examples of object models. Parquet does actually supply an
 ![Image of storage formats and object models](/images/parquet_storage_object_converter.png)
 
 Avro, Thrift and Protocol Buffers all have have their own storage formats, but Parquet doesn't utilize them in any
-way. Parquet data is always serialized using its own file format. This is why Parquet can't read files serialized using
-Avro's storage format, and vice-versa.
+way. Instead their objects are mapped to the Parquet data model. Parquet data is always serialized using its own
+file format. This is why Parquet can't read files serialized using Avro's storage format, and vice-versa.
 
 Let's examine what happens when you write an Avro object to Parquet:
 
