@@ -34,7 +34,11 @@ all examples of object models. Parquet does actually supply an
 (with [MapReduce support](https://github.com/Parquet/parquet-mr/tree/master/parquet-hadoop/src/main/java/parquet/hadoop/example) )
 , but the intention is that you'd use one of the other richer object models such as Avro.
 
+The figure below shows a visual representation of these concepts ([view a larger image](/images/parquet_storage_object_converter.png) ).
+
+
 ![Image of storage formats and object models](/images/parquet_storage_object_converter.png)
+
 
 Avro, Thrift and Protocol Buffers all have have their own storage formats, but Parquet doesn't utilize them in any
 way. Instead their objects are mapped to the Parquet data model. Parquet data is always serialized using its own
