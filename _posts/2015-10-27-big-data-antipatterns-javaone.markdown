@@ -2,7 +2,7 @@
 layout: post
 title: Big data anti-patterns presentation
 quote: Details on the presentation I have at JavaOne in 2015 on big data antipatterns.
-date: 2014-05-13 09:20:00 -05:00
+date: 2015-10-27 19:20:00 -05:00
 categories:
   -- hadoop
   -- cassandra
@@ -10,7 +10,7 @@ categories:
   -- storm
 ---
 
-Yesterday I presented on big data anti-patterns to an audience at JavaOne.  It was
+Today I presented on big data anti-patterns to an audience at JavaOne.  It was
 live-streamed (no pressure Alex) and I'm hoping the video will be publicly available shortly;
 if so I'll update this post with a link.
 
