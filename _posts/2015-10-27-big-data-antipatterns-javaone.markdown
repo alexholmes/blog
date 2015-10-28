@@ -21,4 +21,4 @@ ones (such as "you don't have big data") to ones that were more in the weeds
 Thanks to everyone who attended - I had a lot of fun presenting, and I'm looking
 forward to giving more talks in the future.
 
-Here's a link to the slides of the talk:  (http://www.slideshare.net/grepalex/avoiding-big-data-antipatterns)
+Here's a link to the slides of the talk:  [http://www.slideshare.net/grepalex/avoiding-big-data-antipatterns](http://www.slideshare.net/grepalex/avoiding-big-data-antipatterns)
