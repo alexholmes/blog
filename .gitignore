@@ -4,3 +4,4 @@ _templates
 *.swp
 .rvmrc
 .idea
+.iml

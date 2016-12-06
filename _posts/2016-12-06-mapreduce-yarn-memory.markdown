@@ -9,12 +9,10 @@ categories:
 
 The most common issue that I bump into these days when running MapReduce jobs is the following error:
 
-```
-Application application_1409135750325_48141 failed 2 times due to AM Container for
-appattempt_1409135750325_48141_000002 exited with exitCode: 143 due to: Container
-[pid=4733,containerID=container_1409135750325_48141_02_000001] is running beyond physical memory limits.
-Current usage: 2.0 GB of 2 GB physical memory used; 6.0 GB of 4.2 GB virtual memory used. Killing container.
-```
+    Application application_1409135750325_48141 failed 2 times due to AM Container for
+    appattempt_1409135750325_48141_000002 exited with exitCode: 143 due to: Container
+    [pid=4733,containerID=container_1409135750325_48141_02_000001] is running beyond physical memory limits.
+    Current usage: 2.0 GB of 2 GB physical memory used; 6.0 GB of 4.2 GB virtual memory used. Killing container.
 
 Reading that message it's pretty clear that your job has exceeded its memory limits, but how do you go about
 fixing this?
@@ -78,16 +76,16 @@ Configure `mapreduce.map.memory.mb` and `mapreduce.reduce.memory.mb` to set the 
 for your map and reduce processes respectively.  For example if you want to limit your map process to 2GB and your
 reduce process to 4GB, and you wanted that to be the default in your cluster, then you'd set the following in `mapred-site.xml`:
 
-```
-<property>
-  <name>mapreduce.map.memory.mb</name>
-  <value>2048</value>
-</property>
-<property>
-  <name>mapreduce.reduce.memory.mb</name>
-  <value>4096</value>
-</property>
-```
+
+    <property>
+      <name>mapreduce.map.memory.mb</name>
+      <value>2048</value>
+    </property>
+    <property>
+      <name>mapreduce.reduce.memory.mb</name>
+      <value>4096</value>
+    </property>
+
 
 The physical memory configured for your job must fall within the minimum and maximum memory allowed for containers in
 your cluster (check the `yarn.scheduler.maximum-allocation-mb` and `yarn.scheduler.minimum-allocation-mb` properties
@@ -104,17 +102,15 @@ To continue the example from the previous section, we'll take the 2GB and 4GB ph
 0.8 to arrive at our Java heap sizes.  So we'd end up with the following in `mapred-site.xml` (assuming you wanted
 these to be the defaults for your cluster):
 
-```
-<property>
-  <name>mapreduce.map.java.opts</name>
-  <value>-Xmx1638m</value>
-</property>
-<property>
-  <name>mapreduce.reduce.java.opts</name>
-  <value>-Xmx3278m</value>
-</property>
-```
 
+    <property>
+      <name>mapreduce.map.java.opts</name>
+      <value>-Xmx1638m</value>
+    </property>
+    <property>
+      <name>mapreduce.reduce.java.opts</name>
+      <value>-Xmx3278m</value>
+    </property>
 
 ## Configuring settings for your job
 

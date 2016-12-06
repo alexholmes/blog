@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script should be under /app/blog/gen.sh
+
 send_email_and_exit() {
   recipient=$1
   message=$2
