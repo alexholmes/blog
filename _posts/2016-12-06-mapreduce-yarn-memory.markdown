@@ -117,10 +117,11 @@ these to be the defaults for your cluster):
 The same configuration properties that I've described above apply if you want to individually configure your MapReduce
 jobs and override the cluster defaults.  Again you'll want to set values for these properties for your job:
 
+{: .table .table-striped}
 | Property        | Description           |
-| ------------- |:-------------:|
-| `mapreduce.map.memory.mb` | The amount of physical memory that your YARN map process can use. |
-| `mapreduce.reduce.memory.mb` | The amount of physical memory that your YARN reduce process can use. |
-| `mapreduce.map.java.opts` | Used to configure the heap size for the map JVM process.  Should be 80% of `mapreduce.map.memory.mb`.|
-| `mapreduce.reduce.java.opts` | Used to configure the heap size for the reduce JVM process. Should be 80% of `mapreduce.reduce.memory.mb`.|
+| ------------- |-------------|
+| mapreduce.map.memory.mb | The amount of physical memory that your YARN map process can use. |
+| mapreduce.reduce.memory.mb | The amount of physical memory that your YARN reduce process can use. |
+| mapreduce.map.java.opts | Used to configure the heap size for the map JVM process.  Should be 80% of `mapreduce.map.memory.mb`.|
+| mapreduce.reduce.java.opts | Used to configure the heap size for the reduce JVM process. Should be 80% of `mapreduce.reduce.memory.mb`.|
 
